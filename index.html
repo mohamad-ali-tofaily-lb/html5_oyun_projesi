@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Oil Jump</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #f5a06a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    canvas {
+      display: block;
+      background: #f5a06a;
+      border: 4px solid #000;
+    }
+    #ui {
+      margin-top: 10px;
+      font-size: 14px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas" width="640" height="360"></canvas>
+  <div id="ui">Arrow Keys / WASD → Hareket &nbsp;|&nbsp; SPACE / UP → Zipla</div>
+
+  <script src="sabit.js"></script>
+  <script src="muzik.js"></script>
+  <script src="karakter.js"></script>
+  <script src="cizim.js"></script>
+  <script src="oyun.js"></script>
+</body>
+</html>
