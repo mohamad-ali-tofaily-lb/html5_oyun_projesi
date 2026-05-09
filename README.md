@@ -1,7 +1,7 @@
 # Oil Jump
 
 ## Canlı Demo
-Oyunu buradan oynayabilirsiniz: https://yourusername.github.io/proje-adi/
+Oyunu buradan oynayabilirsiniz: https://mohamad-ali-tofaily-lb.github.io/html5_oyun_projesi/
 
 ## İlham Alınan Oyun
 Bu proje, Blackthornprod Game Jam 3 yarışmasında üst sıralarda yer alan Oil Jump oyunundan esinlenerek geliştirilmiştir.
