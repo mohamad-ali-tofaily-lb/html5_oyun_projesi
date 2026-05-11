@@ -1,3 +1,49 @@
+window.addEventListener('keydown', e => {
+  if (oyundurum === durum.baslamadi) {
+    oyundurum = durum.oynuyor;
+    muzikbaslat();
+  }
+  if (oyundurum === durum.kazandi) {
+    oyunSeviyesi++;
+    if(oyunSeviyesi >= levelPlatformlar.length) oyunSeviyesi = 0;
+    platformlar = levelPlatformlar[oyunSeviyesi];
+    sifirla();
+  } else if (oyundurum === durum.oldu) {
+    sifirla();
+  }
+});
+
+function dongu() {
+  arkaplan();
+
+  if (oyundurum === durum.baslamadi) {
+    platformCiz();
+    kapiCiz();
+    karakterCiz();
+    kalplerCiz();
+    basEkrani();
+  } else if (oyundurum === durum.oynuyor) {
+    guncelle();
+    platformCiz();
+    kapiCiz();
+    karakterCiz();
+    kalplerCiz();
+  } else if (oyundurum === durum.oldu) {
+    platformCiz();
+    kapiCiz();
+    karakterCiz();
+    olduEkrani();
+  } else if (oyundurum === durum.kazandi) {
+    platformCiz();
+    kapiCiz();
+    karakterCiz();
+    kazandiEkrani();
+  }
+
+  requestAnimationFrame(dongu);
+}
+
+
 function carpisti(a, b) {
   return (
     a.x < b.x + b.gen &&
@@ -29,7 +75,7 @@ function guncelle() {
   karakter.y += karakter.hizy;
 
   karakter.zeminde = false;
-  for (const p of platformlar) {
+  for (const p of levelPlatformlar[oyunSeviyesi]) {
     if (carpisti(karakter, p)) {
       const alt = karakter.y + karakter.yuk;
       const oncekialt = alt - karakter.hizy;
@@ -61,7 +107,7 @@ function guncelle() {
 
 function sifirla() {
   karakter.x = 80;
-  karakter.y = 220;
+  karakter.y = 120;
   karakter.hizx = 0;
   karakter.hizy = 0;
   karakter.zeminde = false;
@@ -70,3 +116,4 @@ function sifirla() {
   oyundurum = durum.oynuyor;
   muzikbaslat();
 }
+dongu();

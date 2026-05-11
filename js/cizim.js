@@ -3,14 +3,14 @@ function arkaplan() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-function platformciz() {
+function platformCiz() {
   ctx.fillStyle = renkler.siyah;
-  for (const p of platformlar) {
+  for (const p of levelPlatformlar[oyunSeviyesi]) {
     ctx.fillRect(p.x - kamerax, p.y, p.gen, p.yuk);
   }
 }
 
-function kapiciz() {
+function kapiCiz() {
   const ex = kapi.x - kamerax;
   const ey = kapi.y;
 
@@ -29,7 +29,7 @@ function kapiciz() {
   ctx.fillText('EXIT', ex + kapi.gen / 2, ey - 6);
 }
 
-function karakterciz() {
+function karakterCiz() {
   const ex = karakter.x - kamerax;
   const ey = karakter.y;
 
@@ -55,7 +55,7 @@ function karakterciz() {
   ctx.fillRect(ex + 15, ey + 34, 7, 4);//bacak
 }
 
-function kalpciz(x, y, boyut, dolu) {
+function kalpCiz(x, y, boyut, dolu) {
   ctx.save();
   ctx.beginPath();
   const cx = x + boyut / 2;
@@ -75,7 +75,7 @@ function kalpciz(x, y, boyut, dolu) {
   ctx.restore();
 }
 
-function kalplerciz() {
+function kalplerCiz() {
   const ex = karakter.x - kamerax;
   const ey = karakter.y;
   const boyut = 10;
@@ -86,11 +86,11 @@ function kalplerciz() {
   for (let i = 0; i < karakter.maxkalp; i++) {
     const kx = basx + i * (boyut + bosluk);
     const ky = ey - 32; // sapka ustunde olsun
-    kalpciz(kx, ky, boyut, i < karakter.kalp);
+    kalpCiz(kx, ky, boyut, i < karakter.kalp);
   }
 }
 
-function basekrani() {
+function basEkrani() {
   ctx.fillStyle = 'rgba(0,0,0,0.55)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = renkler.beyaz;
@@ -104,7 +104,7 @@ function basekrani() {
   ctx.fillText('Baslamak icin herhangi bir tusa bas', canvas.width / 2, canvas.height / 2 + 70);
 }
 
-function oldekrani() {
+function olduEkrani() {
   ctx.fillStyle = 'rgba(0,0,0,0.6)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = renkler.beyaz;
@@ -115,7 +115,7 @@ function oldekrani() {
   ctx.fillText('Yeniden baslamak icin SPACE bas', canvas.width / 2, canvas.height / 2 + 20);
 }
 
-function kazandiekrani() {
+function kazandiEkrani() {
   ctx.fillStyle = 'rgba(0,0,0,0.6)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = renkler.beyaz;

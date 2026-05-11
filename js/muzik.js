@@ -1,4 +1,4 @@
-const muzik = new Audio('music.mp3');
+const muzik = new Audio('sound/music.mp3');
 muzik.loop = true;
 muzik.volume = 0.4;
 
