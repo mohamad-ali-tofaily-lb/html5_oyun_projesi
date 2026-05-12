@@ -9,16 +9,27 @@ window.addEventListener('keydown', e => {
     platformlar = levelPlatformlar[oyunSeviyesi];
     sifirla();
   } else if (oyundurum === durum.oldu) {
+    // oyunSeviyesi = 0;
+    if(oyunSeviyesi == 3) {
+      kapi[oyunSeviyesi].y = 120 + parseInt(Math.random() * 50); //20
+      kapi[oyunSeviyesi].x = 1070 + parseInt(Math.random() * 30); //30
+    }
+    sifirla();
+  } else if (oyundurum === durum.bitti  && e.code === 'Space') {
+    oyunSeviyesi = 0;
+    // if()
     sifirla();
   }
+  
 });
-
 function dongu() {
+
   arkaplan();
 
   if (oyundurum === durum.baslamadi) {
     platformCiz();
     kapiCiz();
+    fake_kapiCiz();
     karakterCiz();
     kalplerCiz();
     basEkrani();
@@ -26,20 +37,36 @@ function dongu() {
     guncelle();
     platformCiz();
     kapiCiz();
+    fake_kapiCiz();
+    seviyeEkran();
     karakterCiz();
     kalplerCiz();
+    fake_kapiMesaj();
   } else if (oyundurum === durum.oldu) {
     platformCiz();
     kapiCiz();
+    fake_kapiCiz();
     karakterCiz();
     olduEkrani();
+  } else if (oyundurum === durum.bitti) {
+    platformCiz();
+    kapiCiz();
+    fake_kapiCiz();
+    karakterCiz();
+    platformCiz();
+    kapiCiz();
+    fake_kapiCiz();
+    karakterCiz();
+    oyunBittiEkrani();
   } else if (oyundurum === durum.kazandi) {
     platformCiz();
     kapiCiz();
+    fake_kapiCiz();
     karakterCiz();
     kazandiEkrani();
   }
-
+  
+  timer++;
   requestAnimationFrame(dongu);
 }
 
@@ -87,6 +114,18 @@ function guncelle() {
     }
   }
 
+
+  for (const p of levelPlatformlar[oyunSeviyesi]) {
+    if (carpisti(karakter, p)) {
+      if (karakter.hizx > 0) {
+        karakter.x = p.x - karakter.gen;
+      } else if (karakter.hizx < 0) {
+        karakter.x = p.x + p.gen;
+      }
+      karakter.hizx = 0;
+    }
+  }
+
   if (karakter.kalp <= 0) {
     oyundurum = durum.oldu;
     return;
@@ -96,8 +135,17 @@ function guncelle() {
     oyundurum = durum.oldu;
   }
 
-  if (carpisti(karakter, kapi)) {
-    oyundurum = durum.kazandi;
+  if (carpisti(karakter, kapi[oyunSeviyesi])) {
+    if(oyunSeviyesi == levelPlatformlar.length - 1) {
+      oyundurum = durum.bitti;
+    } else {
+      oyundurum = durum.kazandi;
+    }
+  }
+  if (oyunSeviyesi == 3 && carpisti(karakter, fake_kapi)) {
+    fake_kapi.gizli = 1;
+    fake_kapi.mesaj = 1;
+    deadline = timer + 100;
   }
 
   const hedef = karakter.x - canvas.width / 3;
@@ -107,12 +155,13 @@ function guncelle() {
 
 function sifirla() {
   karakter.x = 80;
-  karakter.y = 120;
+  karakter.y = 20;
   karakter.hizx = 0;
   karakter.hizy = 0;
   karakter.zeminde = false;
   karakter.kalp = karakter.maxkalp;
   kamerax = 0;
+  fake_kapi.gizli = 0;
   oyundurum = durum.oynuyor;
   muzikbaslat();
 }

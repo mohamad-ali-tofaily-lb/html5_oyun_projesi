@@ -11,22 +11,42 @@ function platformCiz() {
 }
 
 function kapiCiz() {
-  const ex = kapi.x - kamerax;
-  const ey = kapi.y;
+  const ex = kapi[oyunSeviyesi].x - kamerax;
+  const ey = kapi[oyunSeviyesi].y;
 
   ctx.fillStyle = renkler.siyah;
-  ctx.fillRect(ex, ey, kapi.gen, kapi.yuk);
+  ctx.fillRect(ex, ey, kapi[oyunSeviyesi].gen, kapi[oyunSeviyesi].yuk);
 
   ctx.fillStyle = renkler.arkaplan;
-  ctx.fillRect(ex + 4, ey + 4, kapi.gen - 8, kapi.yuk - 8);
+  ctx.fillRect(ex + 4, ey + 4, kapi[oyunSeviyesi].gen - 8, kapi[oyunSeviyesi].yuk - 8);
 
   ctx.fillStyle = renkler.siyah;
-  ctx.fillRect(ex + kapi.gen - 10, ey + kapi.yuk / 2 - 3, 6, 6);
+  ctx.fillRect(ex + kapi[oyunSeviyesi].gen - 10, ey + kapi[oyunSeviyesi].yuk / 2 - 3, 6, 6);
 
   ctx.font = 'bold 10px monospace';
   ctx.textAlign = 'center';
   ctx.fillStyle = renkler.siyah;
-  ctx.fillText('EXIT', ex + kapi.gen / 2, ey - 6);
+  ctx.fillText('EXIT', ex + kapi[oyunSeviyesi].gen / 2, ey - 6);
+}
+function fake_kapiCiz() {
+    if(oyunSeviyesi == 3 && fake_kapi.gizli == 0) {
+      const ex = fake_kapi.x - kamerax;
+      const ey = fake_kapi.y;
+
+      ctx.fillStyle = renkler.gri;
+      ctx.fillRect(ex, ey, fake_kapi.gen, fake_kapi.yuk);
+
+      ctx.fillStyle = renkler.arkaplan;
+      ctx.fillRect(ex + 4, ey + 4, fake_kapi.gen - 8, fake_kapi.yuk - 8);
+
+      ctx.fillStyle = renkler.gri;
+      ctx.fillRect(ex + fake_kapi.gen - 10, ey + fake_kapi.yuk / 2 - 3, 6, 6);
+
+      ctx.font = 'bold 10px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = renkler.gri;
+      ctx.fillText('EXIT', ex + fake_kapi.gen / 2, ey - 6);
+    }
 }
 
 function karakterCiz() {
@@ -112,7 +132,7 @@ function olduEkrani() {
   ctx.font = 'bold 48px monospace';
   ctx.fillText('OLDUN!', canvas.width / 2, canvas.height / 2 - 20);
   ctx.font = '16px monospace';
-  ctx.fillText('Yeniden baslamak icin SPACE bas', canvas.width / 2, canvas.height / 2 + 20);
+  ctx.fillText('Yeniden baslamak icin herhangi bir tusa bas', canvas.width / 2, canvas.height / 2 + 20);
 }
 
 function kazandiEkrani() {
@@ -123,5 +143,44 @@ function kazandiEkrani() {
   ctx.font = 'bold 42px monospace';
   ctx.fillText('TESLIMAT TAMAM!', canvas.width / 2, canvas.height / 2 - 20);
   ctx.font = '16px monospace';
-  ctx.fillText('Yeniden baslamak icin SPACE bas', canvas.width / 2, canvas.height / 2 + 20);
+  ctx.fillText('Yeniden baslamak icin herhangi bir tusa bas', canvas.width / 2, canvas.height / 2 + 20);
+}
+function oyunBittiEkrani() {
+  ctx.fillStyle = renkler.siyah;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  ctx.fillStyle = renkler.kazanan; // Altın sarısı bir renk
+  ctx.textAlign = 'center';
+  ctx.font = 'bold 48px monospace';
+  ctx.fillText('TEBRIKLER!', canvas.width / 2, canvas.height / 2 - 40);
+  
+  ctx.fillStyle = renkler.beyaz;
+  ctx.font = 'bold 24px monospace';
+  ctx.fillText('TUM SEVIYELERI GECTIN', canvas.width / 2, canvas.height / 2 + 10);
+  
+  ctx.font = '16px monospace';
+  ctx.fillText('En bastan baslamak icin SPACE bas', canvas.width / 2, canvas.height / 2 + 60);
+}
+
+function seviyeEkran() {
+  const posX = 180;
+  const posY = 100;
+  
+  // 2. Apply the camera offset! This makes it scroll away.
+  const ekrandakiX = posX - kamerax; 
+
+  ctx.font = 'bold 40px monospace';
+  ctx.fillStyle = renkler.siyah;
+  ctx.textAlign = 'center';
+  
+  // 3. Draw the text using the offset X coordinate
+  ctx.fillText('Seviye ' + (oyunSeviyesi + 1), ekrandakiX, posY);
+}
+function fake_kapiMesaj() {
+  if(fake_kapi.mesaj) {
+    ctx.font = 'bold 20px monospace';
+    ctx.fillStyle = renkler.gri;
+    ctx.fillText("Yanlis Kapi", 490 - kamerax, 50);
+    if(deadline == timer) fake_kapi.mesaj = 0;
+  }
 }
