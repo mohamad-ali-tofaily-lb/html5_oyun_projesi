@@ -39,6 +39,11 @@ Oyuncu aşağıdaki tuşlarla karakteri kontrol edebilir:
 - 23360859811 NURLIAIDIN JANARBYEK
 
 ## Kullanılan Varlıklar:
-Müzik: Traverse!...Dusty Desert 1 - Bean's Quest Ost
+Müzik:
+Introduction - Bean's Quest Ost
+Adventure!...Grasslands 2 - Bean's Quest Ost
+Dance!...Crystal Peaks 2 - Bean's Quest Ost
+Mystify...Sky Ruins 2 - Bean's Quest Ost
+Conquer!...Wizard's Lair - Bean's Quest Ost
 
 ## Yapay Zeka Kullanımı: AI.md (chatgpt)
