@@ -17,7 +17,6 @@ window.addEventListener('keydown', e => {
     sifirla();
   } else if (oyundurum === durum.bitti  && e.code === 'Space') {
     oyunSeviyesi = 0;
-    // if()
     sifirla();
   }
   
@@ -86,6 +85,7 @@ function guncelle() {
   if (tuslar['ArrowRight'] || tuslar['KeyD']) karakter.hizx = hiz;
 
   if ((tuslar['Space'] || tuslar['ArrowUp'] || tuslar['KeyW']) && karakter.zeminde) {
+    ziplaSes();
     if (karakter.kalp > 0) {
       karakter.hizy = ziplaguc;
       karakter.zeminde = false;
@@ -128,14 +128,17 @@ function guncelle() {
 
   if (karakter.kalp <= 0) {
     oyundurum = durum.oldu;
+    olduSes();
     return;
   }
 
   if (karakter.y > canvas.height + 50) {
     oyundurum = durum.oldu;
+    olduSes();
   }
 
   if (carpisti(karakter, kapi[oyunSeviyesi])) {
+    kazandiMuzikBaslat();
     if(oyunSeviyesi == levelPlatformlar.length - 1) {
       oyundurum = durum.bitti;
     } else {
