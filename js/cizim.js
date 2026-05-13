@@ -162,6 +162,7 @@ function oyunBittiEkrani() {
   ctx.fillText('En bastan baslamak icin SPACE bas', canvas.width / 2, canvas.height / 2 + 60);
 }
 
+// oyun basinda hangi seviye oldugunu gosterir
 function seviyeEkran() {
   const posX = 180;
   const posY = 100;
@@ -176,11 +177,12 @@ function seviyeEkran() {
   // 3. Draw the text using the offset X coordinate
   ctx.fillText('Seviye ' + (oyunSeviyesi + 1), ekrandakiX, posY);
 }
+// tuzak kapi mesaji, ve sure(time) deadline
 function fake_kapiMesaj() {
   if(fake_kapi.mesaj) {
     ctx.font = 'bold 20px monospace';
     ctx.fillStyle = renkler.gri;
     ctx.fillText("Yanlis Kapi", 490 - kamerax, 50);
-    if(deadline == timer) fake_kapi.mesaj = 0;
+    if(deadline == time) fake_kapi.mesaj = 0;
   }
 }

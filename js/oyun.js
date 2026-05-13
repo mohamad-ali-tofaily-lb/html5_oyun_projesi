@@ -4,18 +4,19 @@ window.addEventListener('keydown', e => {
     muzikbaslat();
   }
   if (oyundurum === durum.kazandi) {
+    // oyun kazandiginda seviyeyi otomatik olarak 1 artirir ve toplam seviye sayisini assa 0 yapar
     oyunSeviyesi++;
     if(oyunSeviyesi >= levelPlatformlar.length) oyunSeviyesi = 0;
     platformlar = levelPlatformlar[oyunSeviyesi];
     sifirla();
   } else if (oyundurum === durum.oldu) {
-    // oyunSeviyesi = 0;
+    // eger 3. levelde kaybettiyse kapinin pozisyonunu rastgele 1 daha degistirir
     if(oyunSeviyesi == 3) {
       kapi[oyunSeviyesi].y = 120 + parseInt(Math.random() * 50); //20
       kapi[oyunSeviyesi].x = 1070 + parseInt(Math.random() * 30); //30
     }
     sifirla();
-  } else if (oyundurum === durum.bitti  && e.code === 'Space') {
+  } else if (oyundurum === durum.bitti  && e.code === 'Space') { 
     oyunSeviyesi = 0;
     sifirla();
   }
@@ -65,7 +66,7 @@ function dongu() {
     kazandiEkrani();
   }
   
-  timer++;
+  time++;
   requestAnimationFrame(dongu);
 }
 
@@ -115,6 +116,9 @@ function guncelle() {
   }
 
 
+  // karakterin sagdan ve soldan her hangi bir platforma carpip carpmadigini kontrol eder
+  // eger carptiysa sagdan mi soldan mi kontrol eder ve ona gore hesaplayarak olmasi gereken konumu belirler
+  // dongu ile tum platformu kontrol eder
   for (const p of levelPlatformlar[oyunSeviyesi]) {
     if (carpisti(karakter, p)) {
       if (karakter.hizx > 0) {
@@ -125,7 +129,8 @@ function guncelle() {
       karakter.hizx = 0;
     }
   }
-
+  
+  // kaybettigi durumlar
   if (karakter.kalp <= 0) {
     oyundurum = durum.oldu;
     olduSes();
@@ -137,6 +142,7 @@ function guncelle() {
     olduSes();
   }
 
+  // kazandigi durumlar, kapiyi carpip carpmadigini kontrol eder ve carptiysa oyun kazandi ya da bitti
   if (carpisti(karakter, kapi[oyunSeviyesi])) {
     kazandiMuzikBaslat();
     if(oyunSeviyesi == levelPlatformlar.length - 1) {
@@ -145,11 +151,12 @@ function guncelle() {
       oyundurum = durum.kazandi;
     }
   }
+  // tuzak kapiyi carpip carpmadigini kontrol eder ve carptiysa, kapiyi gizler ve mesaj gonderir ve time deadline belirlenir
   if (oyunSeviyesi == 3 && carpisti(karakter, fake_kapi)) {
     fake_kapiSes();
     fake_kapi.gizli = 1;
     fake_kapi.mesaj = 1;
-    deadline = timer + 100;
+    deadline = time + 60;
   }
 
   const hedef = karakter.x - canvas.width / 3;
@@ -166,6 +173,7 @@ function sifirla() {
   karakter.kalp = karakter.maxkalp;
   kamerax = 0;
   fake_kapi.gizli = 0;
+  fake_kapi.mesaj = 0;
   oyundurum = durum.oynuyor;
   muzikbaslat();
 }

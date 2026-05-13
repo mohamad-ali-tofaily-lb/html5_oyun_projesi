@@ -16,8 +16,8 @@ const durum = {
   baslamadi: 'baslamadi',
   oynuyor: 'oynuyor',
   oldu: 'oldu',
-  kazandi: 'kazandi',
-  bitti: 'bitti',
+  kazandi: 'kazandi', // seviyeyi tamamladiysa
+  bitti: 'bitti',     // tum seviye tamamlandiysa
 };
 
 const yercekimi = 0.55;
@@ -37,6 +37,8 @@ const karakter = {
   kalp: 3,
 };
 
+
+// platformlar seviyelere gore degismektedir
 const levelPlatformlar = [
   [
     { x: 0,   y: 270, gen: 200, yuk: 120 },
@@ -69,13 +71,16 @@ const levelPlatformlar = [
   ]
 ];
 
+// oyun seviyesini belirler ve levelsPlatformlar dizinin indeksi olarak kullanilir, default olarak 0 ile baslar
 let oyunSeviyesi = 0;
 
-// let random_y = 120 + parseInt(Math.random() * 50);
-// let random_x = 1070 + parseInt(Math.random() * 20);
 
 let random_y = 120 + parseInt(Math.random() * 50);
 let random_x = 1070 + parseInt(Math.random() * 30);
+
+// karakterin varmasi gereken hedef kapinin yatay ve dikey konumu, genisligi ve yuksekligi 
+// kapi konumu ve tum seviyelerde ayri ayri pozisyonda 
+// 4. levelde kapi konumuna random sayi eklenmesiyle kapi pozisyonu dinamik olarak degisir
 let kapi = [
   {x: 850, y: 190, gen: 32, yuk: 60,},
   {x: 1120, y: 90, gen: 32, yuk: 60,},
@@ -84,6 +89,7 @@ let kapi = [
   {x: 850, y: 190, gen: 32, yuk: 60,}
 
 ];
+// tuzak kapi 
 let fake_kapi = {
   x: 430,
   y: 30,
@@ -101,5 +107,8 @@ window.addEventListener('keydown', e => { tuslar[e.code] = true; });
 window.addEventListener('keyup', e => { tuslar[e.code] = false; });
 
 
-let timer = 0;
+// time degiskeni 0 olarak tanimlanir ve her frame'de birer artar ve zaman simuler eder
+// bazi mesajlari belirli bir sure gostermek icindir
+// mesaj gonderilmesi gerektiginde deadline bitmesi gereken sureyi tutar
+let time = 0;
 let deadline = 0;
