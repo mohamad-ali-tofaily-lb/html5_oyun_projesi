@@ -4,7 +4,7 @@ const backgroud_music = [
   new Audio('sound/music3.mp3'), 
   new Audio('sound/music4.mp3'), 
   new Audio('sound/music5.mp3'),
-  new Audio('sound/winmusic.mp3'),
+  new Audio('sound/winmusic2.mp3'),
 ];
 
 backgroud_music.forEach(muzik => {
@@ -25,7 +25,7 @@ function kazandiMuzikBaslat() {
     muzik.pause();
     muzik.currentTime = 0.4;
   });
-
+  backgroud_music[5].volume = 1;
   backgroud_music[5].play().catch(err => console.log('muzik calmiyor:', err));
 }
 function muzikDurdur() {
@@ -34,15 +34,16 @@ function muzikDurdur() {
     muzik.currentTime = 0.4;
   });
 }
-
-
 const zipla = new Audio('sound/jump.mp3');
-zipla.volume = 0.4;
 function ziplaSes() {
   zipla.play().catch(err => console.log('sessiz zipladin basarilar:', err));
 }
 
 const oldu = new Audio('sound/death.mp3');
 function olduSes() {
-  oldu.play().catch(err => console.log('sessiz zipladin basarilar:', err));
+  oldu.play().catch(err => console.log('muzik calmiyor:', err));
+}
+const yanlis_kapi = new Audio('sound/trick.mp3');
+function fake_kapiSes() {
+  yanlis_kapi.play().catch(err => console.log('muzik calmiyor:', err));
 }

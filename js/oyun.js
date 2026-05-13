@@ -146,6 +146,7 @@ function guncelle() {
     }
   }
   if (oyunSeviyesi == 3 && carpisti(karakter, fake_kapi)) {
+    fake_kapiSes();
     fake_kapi.gizli = 1;
     fake_kapi.mesaj = 1;
     deadline = timer + 100;
