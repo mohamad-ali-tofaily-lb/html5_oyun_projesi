@@ -41,4 +41,4 @@ Oyuncu aşağıdaki tuşlarla karakteri kontrol edebilir:
 ## Kullanılan Varlıklar:
 Müzik: Jump!...Grasslands 1 - Bean's Quest Ost
 
-## Yapay Zeka Kullanımı: AI.md
+## Yapay Zeka Kullanımı: AI.md (chatgpt)
