@@ -39,6 +39,6 @@ Oyuncu aşağıdaki tuşlarla karakteri kontrol edebilir:
 - 23360859811 NURLIAIDIN JANARBYEK
 
 ## Kullanılan Varlıklar:
-Müzik: Jump!...Grasslands 1 - Bean's Quest Ost
+Müzik: Traverse!...Dusty Desert 1 - Bean's Quest Ost
 
 ## Yapay Zeka Kullanımı: AI.md (chatgpt)
