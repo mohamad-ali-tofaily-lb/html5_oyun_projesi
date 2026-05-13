@@ -45,5 +45,7 @@ Müzik:
 - Dance!...Crystal Peaks 2 - Bean's Quest Ost
 - Mystify...Sky Ruins 2 - Bean's Quest Ost
 - Conquer!...Wizard's Lair - Bean's Quest Ost
+- Goal! - Bean's Quest Ost
+- Chrome Dino Game death sound effect
 
 ## Yapay Zeka Kullanımı: AI.md (chatgpt)
