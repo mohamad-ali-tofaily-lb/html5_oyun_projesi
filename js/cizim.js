@@ -1,15 +1,16 @@
+//arkaplan renk ve yukseklik ve genislik
 function arkaplan() {
-  ctx.fillStyle = renkler.arkaplan;
+  ctx.fillStyle = renkler.arkaplan;                     
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
-
+//platform renk ve yukseklik ve genislik  ve kamerayla haraketi
 function platformCiz() {
   ctx.fillStyle = renkler.siyah;
   for (const p of levelPlatformlar[oyunSeviyesi]) {
     ctx.fillRect(p.x - kamerax, p.y, p.gen, p.yuk);
   }
 }
-
+//kapi renk ve yukseklik ve genislik  ve kamerayla haraketi
 function kapiCiz() {
   const ex = kapi[oyunSeviyesi].x - kamerax;
   const ey = kapi[oyunSeviyesi].y;
@@ -28,6 +29,7 @@ function kapiCiz() {
   ctx.fillStyle = renkler.siyah;
   ctx.fillText('EXIT', ex + kapi[oyunSeviyesi].gen / 2, ey - 6);
 }
+// bu sahteki kapi sahte kapi, oyun seviyesinde 3 oldugunda ortaya cikacak
 function fake_kapiCiz() {
     if(oyunSeviyesi == 3 && fake_kapi.gizli == 0) {
       const ex = fake_kapi.x - kamerax;
@@ -48,7 +50,7 @@ function fake_kapiCiz() {
       ctx.fillText('EXIT', ex + fake_kapi.gen / 2, ey - 6);
     }
 }
-
+// bu karakteri cizmek icin fonksiyon, kamerayla haraketi ve renkleri var, karakterin genisligi 16 ve yuksekligi 34 not e demek ekran :)
 function karakterCiz() {
   const ex = karakter.x - kamerax;
   const ey = karakter.y;
@@ -74,7 +76,7 @@ function karakterCiz() {
   ctx.fillRect(ex + 6, ey + 34, 7, 4);//bbacak
   ctx.fillRect(ex + 15, ey + 34, 7, 4);//bacak
 }
-
+// kalp cizmek icin fonksiyon, kamerayla haraketi ve renkleri var, boyutu ve dolu mu bos mu oldugunu belirten parametreler var
 function kalpCiz(x, y, boyut, dolu) {
   ctx.save();
   ctx.beginPath();
@@ -94,7 +96,7 @@ function kalpCiz(x, y, boyut, dolu) {
   }
   ctx.restore();
 }
-
+// karakterin kalplerini yerlestirmek icin fonksiyon
 function kalplerCiz() {
   const ex = karakter.x - kamerax;
   const ey = karakter.y;
@@ -109,7 +111,7 @@ function kalplerCiz() {
     kalpCiz(kx, ky, boyut, i < karakter.kalp);
   }
 }
-
+// baslangic ekranini cizmek icin fonksiyon, oyun baslamadan once gosterilecek, oyun hakkinda bilgi verecek ve baslamak icin tusa basilmasini isteyecek
 function basEkrani() {
   ctx.fillStyle = 'rgba(0,0,0,0.55)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -123,7 +125,7 @@ function basEkrani() {
   ctx.font = 'bold 14px monospace';
   ctx.fillText('Baslamak icin herhangi bir tusa bas', canvas.width / 2, canvas.height / 2 + 70);
 }
-
+// oldugunda cikan ekran, karakterin kalpleri bittiginde gosterilecek, yeniden baslamak icin tusa basilmasi istenecek
 function olduEkrani() {
   ctx.fillStyle = 'rgba(0,0,0,0.6)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -134,7 +136,7 @@ function olduEkrani() {
   ctx.font = '16px monospace';
   ctx.fillText('Yeniden baslamak icin herhangi bir tusa bas', canvas.width / 2, canvas.height / 2 + 20);
 }
-
+// kazandi ekraninda karakter kapiya ulastiginda gosterilecek, yeniden baslamak icin tusa basilmasi istenecek
 function kazandiEkrani() {
   ctx.fillStyle = 'rgba(0,0,0,0.6)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -145,6 +147,7 @@ function kazandiEkrani() {
   ctx.font = '16px monospace';
   ctx.fillText('Yeniden baslamak icin herhangi bir tusa bas', canvas.width / 2, canvas.height / 2 + 20);
 }
+// oyunun tum seviyelerini gecince cikan ekran, karakter tum seviyeleri gecip kapiya ulastiginda gosterilecek, yeniden baslamak icin tusa basilmasi istenecek
 function oyunBittiEkrani() {
   ctx.fillStyle = renkler.siyah;
   ctx.fillRect(0, 0, canvas.width, canvas.height);

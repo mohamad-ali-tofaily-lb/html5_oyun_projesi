@@ -1,3 +1,4 @@
+// bu dosya oyun dongusunu, karakterin hareketlerini, carpismalari ve oyun durumlarini kontrol eder
 window.addEventListener('keydown', e => {
   if (oyundurum === durum.baslamadi) {
     oyundurum = durum.oynuyor;
@@ -26,14 +27,14 @@ function dongu() {
 
   arkaplan();
 
-  if (oyundurum === durum.baslamadi) {
+  if (oyundurum === durum.baslamadi) { //oyun baslamadan onceki durum
     platformCiz();
     kapiCiz();
     fake_kapiCiz();
     karakterCiz();
     kalplerCiz();
     basEkrani();
-  } else if (oyundurum === durum.oynuyor) {
+  } else if (oyundurum === durum.oynuyor) { // oyun oynanirkenki durum
     guncelle();
     platformCiz();
     kapiCiz();
@@ -42,13 +43,13 @@ function dongu() {
     karakterCiz();
     kalplerCiz();
     fake_kapiMesaj();
-  } else if (oyundurum === durum.oldu) {
+  } else if (oyundurum === durum.oldu) { // oyun kaybedildiginde cizilecek ekran
     platformCiz();
     kapiCiz();
     fake_kapiCiz();
     karakterCiz();
     olduEkrani();
-  } else if (oyundurum === durum.bitti) {
+  } else if (oyundurum === durum.bitti) { // oyun tum seviyeleri gecildikten sonra kazanildiginda cizilecek ekran
     platformCiz();
     kapiCiz();
     fake_kapiCiz();
@@ -58,7 +59,7 @@ function dongu() {
     fake_kapiCiz();
     karakterCiz();
     oyunBittiEkrani();
-  } else if (oyundurum === durum.kazandi) {
+  } else if (oyundurum === durum.kazandi) { // oyun kapiya ulastiginda kazanildiginda cizilecek ekran
     platformCiz();
     kapiCiz();
     fake_kapiCiz();
@@ -71,7 +72,7 @@ function dongu() {
 }
 
 
-function carpisti(a, b) {
+function carpisti(a, b) { // carpisma kontrolu yapan fonksiyon
   return (
     a.x < b.x + b.gen &&
     a.x + a.gen > b.x &&
@@ -80,7 +81,7 @@ function carpisti(a, b) {
   );
 }
 
-function guncelle() {
+function guncelle() { // surekli olarak karakterin hareketlerini, carpismalari ve oyun durumlarini kontrol eden fonksiyon
   karakter.hizx = 0;
   if (tuslar['ArrowLeft'] || tuslar['KeyA']) karakter.hizx = -hiz;
   if (tuslar['ArrowRight'] || tuslar['KeyD']) karakter.hizx = hiz;
@@ -164,7 +165,7 @@ function guncelle() {
   if (kamerax < 0) kamerax = 0;
 }
 
-function sifirla() {
+function sifirla() { // defaulta dondur, karakterin pozisyonunu, hizini, kalplerini, kamerayi ve sahte kapinin durum
   karakter.x = 80;
   karakter.y = 20;
   karakter.hizx = 0;

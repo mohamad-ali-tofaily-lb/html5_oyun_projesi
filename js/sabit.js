@@ -1,7 +1,7 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-const renkler = {
+const renkler = { // renkler panel bir cok kereler kullanmak icin
   arkaplan: '#f5a06a',
   siyah: '#000000',
   gri: '#808080',
@@ -12,7 +12,7 @@ const renkler = {
   kazanan: '#ffdf00',
 };
 
-const durum = {
+const durum = { // oyun durumlarini belirlemek icin
   baslamadi: 'baslamadi',
   oynuyor: 'oynuyor',
   oldu: 'oldu',
@@ -25,7 +25,7 @@ const ziplaguc = -13;
 const hiz = 3.5;
 
 
-const karakter = {
+const karakter = { // karakterin pozisyonu, genisligi, yuksekligi, hizlari, zeminde olup olmadigi ve kalp sayi
   x: 80,
   y: 20,
   gen: 28,
